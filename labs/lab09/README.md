@@ -1,8 +1,10 @@
-# Lab 09 - Capacity Planning
+# Lab 09 - StatefulSets and Jobs
 
-The goal is to divide your cluster into three environments to run the Pi app: dev, test, and UAT. UAT should be limited to 50% of your node’s total CPU, and dev and test to 25% each. Your Pi Deployment should be set with limits so it can run at least four replicas in every environment, and then you need to verify how much you can scale up to in UAT.
+Use https://github.com/KernelGamut32/kiamol/tree/master/ch08. Forked from https://github.com/sixeyed/kiamol that accompanies a great book called "Learn Kubernetes in a Month of Lunches" by Elton Stoneman.
 
-* Start by deploying the namespaces and Services in the lab folder.
-* Then work out the CPU capacity of your node, and deploy resource quotas to limit CPU in each namespace (you’ll need to write the quota specs)
-* Update the Deployment spec in web.yaml to include a CPU limit that allows four replicas to run in each namespace
-* When everything’s running, scale up the UAT Deployment to eight replicas, and try to find out why they don’t all run
+* Start by running the nginx spec in ch08/lab/nginx - runs a single pod writing logs to an EmptyDir.
+* Migrate the pod spec to use a StatefulSet - configure it to run with 3 pods and use separate storage for each.
+* Each pod will be writing log files to its own PersistentVolumeClaim.
+* With StatefulSet running, make calls to the Service and confirm that log data is being written in the pods.
+* Complete the Job spec in the file disk-calc-job.yaml - add volume mounts so it can read log files from the nginx pods.
+* Execute the Job and confirm receipt of each pod's log file size.

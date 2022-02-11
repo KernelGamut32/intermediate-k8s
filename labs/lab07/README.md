@@ -1,10 +1,12 @@
-# Lab 07 (Chapter 6) - Scaling and DaemonSets
+# Lab 07 - PersistentVolumes
 
-Use https://github.com/KernelGamut32/kiamol/tree/master/ch06
+Use https://github.com/KernelGamut32/kiamol/tree/master/ch05. Forked from https://github.com/sixeyed/kiamol that accompanies a great book called "Learn Kubernetes in a Month of Lunches" by Elton Stoneman.
 
-Your job in this lab is to take an app spec that uses some older approaches and update it to use the controllers you’ve learned about.
-
-    - Start by deploying the app in ch06/lab/numbers—it’s the random-number app from chapter 3 but with a strange configuration. And it’s broken.
-    - You need to update the web component to use a controller that supports high load. We’ll want to run dozens of these in production.
-    - The API needs to be updated, too. It needs to be replicated for high availability, but the app uses a hardware random-number generator attached to the server, which can be used by only one Pod at a time. Nodes with the right hardware have the label rng=hw (you’ll need to simulate that in your cluster).
-    - This isn’t a clean upgrade, so you need to plan your deployment to make sure there’s no downtime for the web app.
+* Deploy the app manifests in the ch05/lab/todo-list folder - this will create the initial resources.
+* Examine the manifests to get a sense of what's being created and how it relates together.
+* Try hitting the URL for the LoadBalancer and try using the application - it won't respond.
+* Dig into the logs to figure out what's wrong and identify the expected names for the missing mount targets.
+* Configure persistent storage for the proxy cache files and for the database file in the web pod.
+* Run the app and add some data.
+* Delete all pods and refresh browser to confirm your added data is still present.
+* Use any volume type of storage class you choose.

@@ -1,11 +1,9 @@
-# Lab 06 (Chapter 5) - PersistentVolumes
+# Lab 06 - Services
 
-Use https://github.com/KernelGamut32/kiamol/tree/master/ch05
+Use https://github.com/KernelGamut32/kiamol/tree/master/ch03. Forked from https://github.com/sixeyed/kiamol that accompanies a great book called "Learn Kubernetes in a Month of Lunches" by Elton Stoneman.
 
-We have a new deployment of the to-do app, which has a couple of issues. We’re using a proxy in front of the web Pod to improve performance and a local database file inside the web Pod because this is just a development deployment. We need some persistent storage configured at the proxy layer and the web layer, so you can remove Pods and deployments, and the data still persists.
-
-    - Start by deploying the app manifests in the ch05/lab/todo-list folder; that creates the Services and Deployments for the proxy and web components.
-    - Find the URL for the LoadBalancer, and try using the app. You’ll find it doesn’t respond, and you’ll need to dig into the logs to find out what’s wrong.
-    - Your task is to configure persistent storage for the proxy cache files and for the database file in the web Pod. You should be able to find the mount targets from the log entries and the Pod spec.
-    - When you have the app running, you should be able to add some data, delete all your Pods, refresh the browser, and see that your data is still there.
-    - You can use any volume type or storage class that you like. This is a good opportunity to explore what your platform provides.
+* Deploy the resources defined in the deployments.yaml file in the lab folder using Kubernetes. 
+* This will provide you with a web app and an API for requesting a random number.
+* Examine the pods created by the previous manifest - you should see 2 versions of the web app running.
+* Write a service to expose the API to other pods (internal only) using the service name numbers-api.
+* Write a service that will make version 2 of the website available outside of the cluster on port 8088.
